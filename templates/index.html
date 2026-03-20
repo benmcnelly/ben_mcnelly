@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>benmcnelly install</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background:
+                radial-gradient(circle at top, rgba(34, 211, 238, 0.06), transparent 35%),
+                linear-gradient(to bottom, #020617, #030b1f 45%, #020617);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center text-slate-100">
+    <div class="w-full max-w-3xl px-6">
+        <div class="rounded-md border border-cyan-500/30 bg-[#04112b]/90 shadow-[0_0_0_1px_rgba(34,211,238,0.08),0_0_30px_rgba(34,211,238,0.06)]">
+            <div class="flex items-center justify-between border-b border-cyan-500/20 px-4 py-3">
+                <div class="text-cyan-300 text-sm tracking-widest uppercase">
+                    Ben McNelly
+                </div>
+
+                <button
+                    id="copyBtn"
+                    class="rounded border border-fuchsia-400/30 px-3 py-1 text-xs uppercase tracking-wider text-fuchsia-300 transition hover:bg-fuchsia-400/10"
+                    type="button"
+                >
+                    Copy
+                </button>
+            </div>
+
+            <pre id="installCode" class="px-8 py-10 text-center text-lg md:text-2xl leading-relaxed text-green-300 overflow-x-auto"><code>pip install benmcnelly</code></pre>
+        </div>
+    </div>
+
+    <script>
+        const copyBtn = document.getElementById("copyBtn");
+        const installCode = document.getElementById("installCode");
+
+        copyBtn.addEventListener("click", async () => {
+            const text = installCode.innerText.trim();
+
+            try {
+                await navigator.clipboard.writeText(text);
+                copyBtn.textContent = "Copied!";
+                setTimeout(() => {
+                    copyBtn.textContent = "Copy";
+                }, 1200);
+            } catch (err) {
+                copyBtn.textContent = "Failed";
+                setTimeout(() => {
+                    copyBtn.textContent = "Copy";
+                }, 1200);
+            }
+        });
+    </script>
+</body>
+</html>
